@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 export function LoginPage() {
-  const { signIn, signUp, authError, isConfigured, enableDevMockSession, isLoading } = useAuth();
+  const { signIn, signUp, authError, isLoading } = useAuth();
   const [isRegistering, setIsRegistering] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -127,27 +127,6 @@ export function LoginPage() {
             </p>
           </div>
 
-          {/* Supabase Status Banner */}
-          {!isConfigured && (
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-xs text-amber-300 space-y-2">
-              <div className="flex items-center space-x-2 font-semibold">
-                <AlertCircle className="w-4 h-4 text-amber-400" />
-                <span>Supabase Credentials Not Yet Configured</span>
-              </div>
-              <p className="text-amber-200/80 leading-relaxed">
-                Add <code className="bg-amber-950/60 px-1 py-0.5 rounded text-amber-200">VITE_SUPABASE_URL</code> and <code className="bg-amber-950/60 px-1 py-0.5 rounded text-amber-200">VITE_SUPABASE_ANON_KEY</code> to your <code className="bg-amber-950/60 px-1 py-0.5 rounded text-amber-200">.env.local</code> to connect live PostgreSQL.
-              </p>
-              <button
-                type="button"
-                onClick={enableDevMockSession}
-                className="w-full mt-2 py-2 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold rounded-lg transition-colors flex items-center justify-center space-x-2"
-              >
-                <span>Launch Offline Dev Preview (Mock Data)</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          )}
-
           {/* Error Banner */}
           {(formError || authError) && (
             <div className="bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs p-3.5 rounded-xl flex items-start space-x-2.5">
@@ -166,31 +145,6 @@ export function LoginPage() {
               </div>
             </div>
           )}
-
-          {/* Quick Demo Access Card */}
-          <div className="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-3.5 text-xs text-indigo-200">
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="font-semibold text-white flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Demo Account
-              </span>
-              <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-mono">Owner</span>
-            </div>
-            <p className="text-slate-400 text-[11px] mb-2.5">
-              Pre-loaded with inventory, customers, suppliers & double-entry ledger. Zero verification emails required.
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setEmail('demo.stockflow@gmail.com');
-                setPassword('Demo@123456');
-                setIsRegistering(false);
-                setFormError(null);
-              }}
-              className="w-full py-1.5 px-3 bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/40 text-indigo-100 rounded-lg font-medium transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>Auto-fill Demo Credentials</span>
-            </button>
-          </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
