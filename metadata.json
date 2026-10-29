@@ -1,0 +1,6 @@
+{
+  "name": "StockFlow — Wholesale & Distribution Business Management System",
+  "description": "Professional wholesale and distribution management dashboard for inventory, orders, dispatches, GST invoices, payments, and supplier purchases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
